@@ -77,7 +77,6 @@ export default function App() {
   );
 }
 
-// ===== LOADING SCREEN =====
 function LoadingScreen() {
   const [chars, setChars] = useState("");
 
@@ -118,7 +117,6 @@ function LoadingScreen() {
   );
 }
 
-// ===== AUTH SCREEN =====
 function AuthScreen({ onLogin }) {
   const [mode, setMode] = useState("login");
   const [name, setName] = useState("");
@@ -244,7 +242,6 @@ function AuthScreen({ onLogin }) {
   );
 }
 
-// ===== BOOT SCREEN =====
 function BootScreen({ me, onDone }) {
   const [lines, setLines] = useState([]);
   const team = TEAMS[me.team] || { name: "ŠTÁB VEDENÍ", flag: "🕴️", color: GREEN };
@@ -276,7 +273,6 @@ function BootScreen({ me, onDone }) {
   );
 }
 
-// ===== MAIN APP =====
 function MainApp({ me, setMe, onLogout }) {
   const [tab, setTab] = useState("feed");
   const team = TEAMS[me.team] || { name: "ŠTÁB VEDENÍ", flag: "🕴️", color: GREEN };
@@ -305,7 +301,7 @@ function MainApp({ me, setMe, onLogout }) {
 
       <main style={{ flex: 1, padding: 16, paddingBottom: 90 }}>
         {tab === "feed" && <Feed me={me} />}
-        {tab === "chat" && <TeamChat me={me} team={team} />}
+        {tab === "chat" && <GlobalChat me={me} />}
         {tab === "game" && <HackGame me={me} setMe={setMe} />}
         {tab === "board" && <Leaderboard me={me} />}
         {tab === "admin" && me.is_admin && <AdminPanel />}
@@ -333,7 +329,6 @@ function MainApp({ me, setMe, onLogout }) {
   );
 }
 
-// ===== FEED =====
 function Feed({ me }) {
   const [posts, setPosts] = useState(null);
   const [text, setText] = useState("");
@@ -427,8 +422,7 @@ function Feed({ me }) {
   );
 }
 
-// ===== TEAM CHAT =====
-function TeamChat({ me, team }) {
+function GlobalChat({ me }) {
   const [msgs, setMsgs] = useState(null);
   const [text, setText] = useState("");
   const bottomRef = useRef(null);
@@ -458,12 +452,7 @@ function TeamChat({ me, team }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "calc(100vh - 190px)" }}>
-      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 15, color: GREEN }}>💬 GLOBÁLNÍ KANÁL</h2></thinking>
-
-✅ **HOTOVO! Tady je opravená verze!**
-<function_calls>
-<invoke name="present_files">
-<parameter name="filepaths">["/mnt/user-data/outputs/App_GREEN_DESIGN.jsx"]
+      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 15, color: GREEN }}>💬 GLOBÁLNÍ KANÁL</h2>
 
       <div style={{ flex: 1, overflowY: "auto", background: DARK_PANEL, border: `1px solid ${GREEN}44`, borderRadius: 4, padding: 12, marginBottom: 10 }}>
         {msgs === null && <div style={{ color: GREEN + "66" }}>dešifruji zprávy...</div>}
@@ -500,7 +489,6 @@ function TeamChat({ me, team }) {
   );
 }
 
-// ===== HACK GAME =====
 function HackGame({ me, setMe }) {
   const [phase, setPhase] = useState("idle");
   const [round, setRound] = useState(1);
@@ -622,7 +610,6 @@ function HackGame({ me, setMe }) {
   );
 }
 
-// ===== LEADERBOARD =====
 function Leaderboard({ me }) {
   const [scores, setScores] = useState(null);
 
@@ -675,7 +662,6 @@ function Leaderboard({ me }) {
   );
 }
 
-// ===== ADMIN PANEL =====
 function AdminPanel() {
   const [users, setUsers] = useState([]);
 
@@ -714,7 +700,6 @@ function AdminPanel() {
   );
 }
 
-// ===== PROFILE =====
 function Profile({ me, team, onLogout }) {
   return (
     <div style={{ textAlign: "center" }}>
@@ -742,7 +727,6 @@ function Profile({ me, team, onLogout }) {
   );
 }
 
-// ===== KOMPONENTY =====
 function Stat({ label, value }) {
   return (
     <div style={{ flex: 1, background: DARK_PANEL2, border: `1px solid ${GREEN}44`, borderRadius: 4, padding: "10px 6px", textAlign: "center", minWidth: 80 }}>
