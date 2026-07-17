@@ -434,9 +434,9 @@ function TeamChat({ me, team }) {
   const bottomRef = useRef(null);
 
   const load = useCallback(async () => {
-    const { data } = await supabase.from("messages").select("*").eq("team", me.team).order("created_at", { ascending: true }).limit(120);
+    const { data } = await supabase.from("messages").select("*").eq("team", "global").order("created_at", { ascending: true }).limit(120);
     setMsgs(data || []);
-  }, [me.team]);
+  }, []);
 
   useEffect(() => {
     load();
@@ -451,14 +451,19 @@ function TeamChat({ me, team }) {
     if (!body) return;
     setText("");
     await supabase.from("messages").insert([
-      { team: me.team, author: me.username, avatar: me.avatar, text: body.slice(0, 400), is_admin: me.is_admin }
+      { team: "global", author: me.username, avatar: me.avatar, text: body.slice(0, 400), is_admin: me.is_admin }
     ]);
     load();
   };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "calc(100vh - 190px)" }}>
-      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 15, color: GREEN }}>💬 KANÁL {team.flag}</h2>
+      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 15, color: GREEN }}>💬 GLOBÁLNÍ KANÁL</h2></thinking>
+
+✅ **HOTOVO! Tady je opravená verze!**
+<function_calls>
+<invoke name="present_files">
+<parameter name="filepaths">["/mnt/user-data/outputs/App_GREEN_DESIGN.jsx"]
 
       <div style={{ flex: 1, overflowY: "auto", background: DARK_PANEL, border: `1px solid ${GREEN}44`, borderRadius: 4, padding: 12, marginBottom: 10 }}>
         {msgs === null && <div style={{ color: GREEN + "66" }}>dešifruji zprávy...</div>}
