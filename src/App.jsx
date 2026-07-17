@@ -6,22 +6,22 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const DEFAULT_ADMIN_CODE = "DON-2026";
 const TEAMS = {
-  mexicka:  { name: "Mexická mafie",  flag: "🇲🇽", code: "MEX-SICARIO", color: "#2E8B57" },
-  ceska:    { name: "Česká mafie",    flag: "🇨🇿", code: "CZE-KMOTR",   color: "#4A7FBF" },
-  italska:  { name: "Italská mafie",  flag: "🇮🇹", code: "ITA-OMERTA",  color: "#3FA66A" },
-  americka: { name: "Americká mafie", flag: "🇺🇸", code: "USA-CAPONE",  color: "#B33A3A" },
+  mexicka:  { name: "Mexická mafie",  flag: "🇲🇽", code: "MEX-SICARIO", color: "#3a9d5d" },
+  ceska:    { name: "Česká mafie",    flag: "🇨🇿", code: "CZE-KMOTR",   color: "#2d8659" },
+  italska:  { name: "Italská mafie",  flag: "🇮🇹", code: "ITA-OMERTA",  color: "#4db876" },
+  americka: { name: "Americká mafie", flag: "🇺🇸", code: "USA-CAPONE",  color: "#C97F3D" },
   japonska: { name: "Japonská mafie", flag: "🇯🇵", code: "JPN-YAKUZA",  color: "#D8557B" },
   ruska:    { name: "Ruská mafie",    flag: "🇷🇺", code: "RUS-BRATVA",  color: "#7B68B5" },
   anglicka: { name: "Anglická mafie", flag: "🏴", code: "ENG-KRAYS",   color: "#C97F3D" },
-  tajna:    { name: "??? (tajná)",    flag: "🎭", code: "X-FANTOM",    color: "#8A8A8A" },
+  tajna:    { name: "??? (tajná)",    flag: "🎭", code: "X-FANTOM",    color: "#5a7a5f" },
 };
 
 const AVATARS = ["🎩","🕶️","🐺","💀","🃏","👑","🐉","🥷","🦂","🍝","🍕","💼","⚡","🦅","🐍","🔥"];
 
-const NEON_GREEN = "#00FF00";
-const BLACK = "#000000";
-const DARK_PANEL = "#0a0a0a";
-const DARK_PANEL2 = "#151515";
+const GREEN = "#3a9d5d";
+const DARK_BG = "#0d1b0f";
+const DARK_PANEL = "#1a2e1f";
+const DARK_PANEL2 = "#233429";
 
 export default function App() {
   const [screen, setScreen] = useState("auth");
@@ -61,11 +61,11 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: BLACK, color: NEON_GREEN, fontFamily: '"Courier New", monospace', overflow: "hidden", position: "relative" }}>
+    <div style={{ minHeight: "100vh", background: DARK_BG, color: GREEN, fontFamily: '"Courier New", monospace', overflow: "hidden", position: "relative" }}>
       <style>{`
         @keyframes glow {
-          0%, 100% { text-shadow: 0 0 10px ${NEON_GREEN}, 0 0 20px ${NEON_GREEN}; }
-          50% { text-shadow: 0 0 20px ${NEON_GREEN}, 0 0 40px ${NEON_GREEN}; }
+          0%, 100% { text-shadow: 0 0 8px ${GREEN}, 0 0 15px ${GREEN}44; }
+          50% { text-shadow: 0 0 15px ${GREEN}, 0 0 25px ${GREEN}66; }
         }
         h1, h2 { animation: glow 2s ease-in-out infinite; }
       `}</style>
@@ -96,18 +96,18 @@ function LoadingScreen() {
   return (
     <div style={{
       minHeight: "100vh",
-      background: BLACK,
+      background: DARK_BG,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: NEON_GREEN,
+      color: GREEN,
       fontFamily: '"Courier New", monospace',
       textAlign: "center",
     }}>
       <div>
         <div style={{ fontSize: 48, marginBottom: 20 }}>🎭</div>
         <div style={{ fontSize: 28, letterSpacing: 4, marginBottom: 30 }}>MAFIA HQ</div>
-        <div style={{ fontSize: 12, letterSpacing: 2, color: NEON_GREEN + "66", marginBottom: 20 }}>
+        <div style={{ fontSize: 12, letterSpacing: 2, color: GREEN + "66", marginBottom: 20 }}>
           &gt; INICIALIZUJI TERMINÁL...
         </div>
         <div style={{ fontSize: 14, minHeight: 25, fontFamily: '"Courier New", monospace', letterSpacing: 2 }}>
@@ -170,8 +170,8 @@ function AuthScreen({ onLogin }) {
   const inputStyle = {
     width: "100%",
     background: DARK_PANEL2,
-    border: `1px solid ${NEON_GREEN}`,
-    color: NEON_GREEN,
+    border: `1px solid ${GREEN}`,
+    color: GREEN,
     padding: 12,
     marginBottom: 10,
     fontSize: 13,
@@ -185,44 +185,44 @@ function AuthScreen({ onLogin }) {
       <div style={{ textAlign: "center", marginBottom: 50 }}>
         <div style={{ fontSize: 56, marginBottom: 15 }}>🎭</div>
         <h1 style={{ margin: 0, fontSize: 28, letterSpacing: 3 }}>MAFIA HQ</h1>
-        <p style={{ fontSize: 11, color: NEON_GREEN + "66", marginTop: 10, letterSpacing: 1 }}>
+        <p style={{ fontSize: 11, color: GREEN + "66", marginTop: 10, letterSpacing: 1 }}>
           &gt; VSTUP DO SÍTĚ RODINY
         </p>
       </div>
 
-      <div style={{ background: DARK_PANEL, border: `2px solid ${NEON_GREEN}`, padding: 20, boxShadow: `0 0 20px ${NEON_GREEN}33` }}>
+      <div style={{ background: DARK_PANEL, border: `2px solid ${GREEN}`, padding: 20, boxShadow: `0 0 15px ${GREEN}22` }}>
         <div style={{ display: "flex", gap: 8, marginBottom: 18 }}>
           {["login", "register"].map((m) => (
             <button key={m} onClick={() => { setMode(m); setErr(""); }}
               style={{
                 flex: 1, padding: "10px 0", borderRadius: 4, cursor: "pointer", fontSize: 13, letterSpacing: 1,
-                background: mode === m ? NEON_GREEN : "transparent",
-                color: mode === m ? BLACK : NEON_GREEN,
-                border: `1px solid ${mode === m ? NEON_GREEN : NEON_GREEN}44`, fontWeight: 700,
+                background: mode === m ? GREEN : "transparent",
+                color: mode === m ? DARK_BG : GREEN,
+                border: `1px solid ${mode === m ? GREEN : GREEN}44`, fontWeight: 700,
               }}>
               {m === "login" ? "PŘIHLÁSIT" : "NOVÝ AGENT"}
             </button>
           ))}
         </div>
 
-        <label style={{ fontSize: 11, color: NEON_GREEN + "66", letterSpacing: 1 }}>KRYCÍ JMÉNO</label>
+        <label style={{ fontSize: 11, color: GREEN + "66", letterSpacing: 1 }}>KRYCÍ JMÉNO</label>
         <input style={inputStyle} value={name} onChange={(e) => setName(e.target.value)} placeholder="např. Tichý Tony" maxLength={20} />
 
-        <label style={{ fontSize: 11, color: NEON_GREEN + "66", letterSpacing: 1 }}>HESLO</label>
+        <label style={{ fontSize: 11, color: GREEN + "66", letterSpacing: 1 }}>HESLO</label>
         <input style={inputStyle} type="password" value={pass} onChange={(e) => setPass(e.target.value)} placeholder="tajné heslo" onKeyDown={(e) => e.key === "Enter" && submit()} />
 
         {mode === "register" && (
           <>
-            <label style={{ fontSize: 11, color: NEON_GREEN + "66", letterSpacing: 1 }}>KÓD MAFIE</label>
+            <label style={{ fontSize: 11, color: GREEN + "66", letterSpacing: 1 }}>KÓD MAFIE</label>
             <input style={{ ...inputStyle, textTransform: "uppercase", letterSpacing: 2 }} value={code} onChange={(e) => setCode(e.target.value)} placeholder="XXX-XXXXX" />
-            <label style={{ fontSize: 11, color: NEON_GREEN + "66", letterSpacing: 1 }}>ZNAK AGENTA</label>
+            <label style={{ fontSize: 11, color: GREEN + "66", letterSpacing: 1 }}>ZNAK AGENTA</label>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(8,1fr)", gap: 6, margin: "8px 0 14px" }}>
               {AVATARS.map((a) => (
                 <button key={a} onClick={() => setAvatar(a)}
                   style={{
                     fontSize: 20, padding: "6px 0", borderRadius: 4, cursor: "pointer",
-                    background: avatar === a ? NEON_GREEN + "33" : DARK_PANEL2,
-                    border: `1px solid ${avatar === a ? NEON_GREEN : NEON_GREEN + "44"}`,
+                    background: avatar === a ? GREEN + "33" : DARK_PANEL2,
+                    border: `1px solid ${avatar === a ? GREEN : GREEN + "44"}`,
                   }}>{a}</button>
               ))}
             </div>
@@ -233,7 +233,7 @@ function AuthScreen({ onLogin }) {
 
         <button onClick={submit} disabled={busy}
           style={{
-            width: "100%", padding: 13, background: NEON_GREEN, color: BLACK, border: "none",
+            width: "100%", padding: 13, background: GREEN, color: DARK_BG, border: "none",
             borderRadius: 4, fontSize: 15, fontWeight: 700, letterSpacing: 2, cursor: "pointer",
             opacity: busy ? 0.6 : 1,
           }}>
@@ -247,7 +247,7 @@ function AuthScreen({ onLogin }) {
 // ===== BOOT SCREEN =====
 function BootScreen({ me, onDone }) {
   const [lines, setLines] = useState([]);
-  const team = TEAMS[me.team] || { name: "ŠTÁB VEDENÍ", flag: "🕴️", color: NEON_GREEN };
+  const team = TEAMS[me.team] || { name: "ŠTÁB VEDENÍ", flag: "🕴️", color: GREEN };
 
   useEffect(() => {
     const seq = [
@@ -266,10 +266,10 @@ function BootScreen({ me, onDone }) {
   }, []);
 
   return (
-    <div style={{ maxWidth: 420, margin: "0 auto", padding: "120px 24px", color: NEON_GREEN, fontSize: 14 }}>
+    <div style={{ maxWidth: 420, margin: "0 auto", padding: "120px 24px", color: GREEN, fontSize: 14 }}>
       {lines.map((l, i) => (
         <div key={i} style={{ marginBottom: 10 }}>
-          {l && l.includes("POVOLEN") ? <span style={{ color: NEON_GREEN, fontWeight: 700 }}>{l}</span> : l}
+          {l && l.includes("POVOLEN") ? <span style={{ color: GREEN, fontWeight: 700 }}>{l}</span> : l}
         </div>
       ))}
     </div>
@@ -279,7 +279,7 @@ function BootScreen({ me, onDone }) {
 // ===== MAIN APP =====
 function MainApp({ me, setMe, onLogout }) {
   const [tab, setTab] = useState("feed");
-  const team = TEAMS[me.team] || { name: "ŠTÁB VEDENÍ", flag: "🕴️", color: NEON_GREEN };
+  const team = TEAMS[me.team] || { name: "ŠTÁB VEDENÍ", flag: "🕴️", color: GREEN };
 
   const tabs = [
     { id: "feed", label: "Rozkazy", icon: "📜" },
@@ -294,11 +294,11 @@ function MainApp({ me, setMe, onLogout }) {
     <div style={{ maxWidth: 560, margin: "0 auto", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <header style={{
         display: "flex", alignItems: "center", gap: 10, padding: "12px 16px",
-        borderBottom: `1px solid ${NEON_GREEN}`, background: DARK_PANEL, position: "sticky", top: 0, zIndex: 10,
+        borderBottom: `1px solid ${GREEN}`, background: DARK_PANEL, position: "sticky", top: 0, zIndex: 10,
       }}>
         <span style={{ fontSize: 22 }}>{team.flag}</span>
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: '"Georgia", serif', color: NEON_GREEN, fontSize: 17, letterSpacing: 1 }}>MAFIA HQ</div>
+          <div style={{ fontFamily: '"Georgia", serif', color: GREEN, fontSize: 17, letterSpacing: 1 }}>MAFIA HQ</div>
           <div style={{ fontSize: 11, color: team.color }}>{team.name} · {me.avatar} {me.username}{me.is_admin ? " · DON" : ""}</div>
         </div>
       </header>
@@ -314,14 +314,14 @@ function MainApp({ me, setMe, onLogout }) {
 
       <nav style={{
         position: "fixed", bottom: 0, left: 0, right: 0, display: "flex", justifyContent: "center",
-        background: DARK_PANEL, borderTop: `1px solid ${NEON_GREEN}`, zIndex: 10,
+        background: DARK_PANEL, borderTop: `1px solid ${GREEN}`, zIndex: 10,
       }}>
         <div style={{ display: "flex", width: "100%", maxWidth: 560 }}>
           {tabs.map((t) => (
             <button key={t.id} onClick={() => setTab(t.id)}
               style={{
                 flex: 1, padding: "10px 0 12px", background: "transparent", border: "none", cursor: "pointer",
-                color: tab === t.id ? NEON_GREEN : NEON_GREEN + "66", borderTop: `2px solid ${tab === t.id ? NEON_GREEN : "transparent"}`,
+                color: tab === t.id ? GREEN : GREEN + "66", borderTop: `2px solid ${tab === t.id ? GREEN : "transparent"}`,
               }}>
               <div style={{ fontSize: 19 }}>{t.icon}</div>
               <div style={{ fontSize: 10, letterSpacing: 1, marginTop: 2 }}>{t.label}</div>
@@ -380,43 +380,43 @@ function Feed({ me }) {
 
   return (
     <div>
-      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 20, color: NEON_GREEN }}>📜 ROZKAZY OD DONA</h2>
+      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 20, color: GREEN }}>📜 ROZKAZY OD DONA</h2>
 
       {me.is_admin && (
-        <div style={{ background: DARK_PANEL, border: `1px solid ${NEON_GREEN}`, borderRadius: 4, padding: 14, marginBottom: 18 }}>
+        <div style={{ background: DARK_PANEL, border: `1px solid ${GREEN}`, borderRadius: 4, padding: 14, marginBottom: 18 }}>
           <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Titulek (nepovinný)"
-            style={{ width: "100%", background: DARK_PANEL2, border: `1px solid ${NEON_GREEN}44`, color: NEON_GREEN, padding: 10, borderRadius: 4, marginBottom: 8, fontSize: 14, boxSizing: "border-box" }} />
+            style={{ width: "100%", background: DARK_PANEL2, border: `1px solid ${GREEN}44`, color: GREEN, padding: 10, borderRadius: 4, marginBottom: 8, fontSize: 14, boxSizing: "border-box" }} />
           <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Napiš rozkaz..." rows={3}
-            style={{ width: "100%", background: DARK_PANEL2, border: `1px solid ${NEON_GREEN}44`, color: NEON_GREEN, padding: 10, borderRadius: 4, fontSize: 14, resize: "vertical", boxSizing: "border-box" }} />
+            style={{ width: "100%", background: DARK_PANEL2, border: `1px solid ${GREEN}44`, color: GREEN, padding: 10, borderRadius: 4, fontSize: 14, resize: "vertical", boxSizing: "border-box" }} />
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 8 }}>
-            <label style={{ fontSize: 12, color: NEON_GREEN + "66", display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
+            <label style={{ fontSize: 12, color: GREEN + "66", display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
               <input type="checkbox" checked={isMission} onChange={(e) => setIsMission(e.target.checked)} />
               Označit jako MISI 🎯
             </label>
             {err && <span style={{ color: "#FF6B6B", fontSize: 11 }}>! {err}</span>}
             <button onClick={publish} disabled={busy}
-              style={{ marginLeft: "auto", background: NEON_GREEN, color: BLACK, border: "none", padding: "8px 18px", borderRadius: 4, fontWeight: 700, cursor: "pointer", letterSpacing: 1, opacity: busy ? 0.6 : 1 }}>
+              style={{ marginLeft: "auto", background: GREEN, color: DARK_BG, border: "none", padding: "8px 18px", borderRadius: 4, fontWeight: 700, cursor: "pointer", letterSpacing: 1, opacity: busy ? 0.6 : 1 }}>
               {busy ? "UKLÁDÁM..." : "VYDAT ROZKAZ"}
             </button>
           </div>
         </div>
       )}
 
-      {posts === null && <div style={{ color: NEON_GREEN + "66", fontSize: 13 }}>načítám zprávy...</div>}
-      {posts && posts.length === 0 && <div style={{ color: NEON_GREEN + "66", fontSize: 13 }}>Zatím žádné rozkazy.</div>}
+      {posts === null && <div style={{ color: GREEN + "66", fontSize: 13 }}>načítám zprávy...</div>}
+      {posts && posts.length === 0 && <div style={{ color: GREEN + "66", fontSize: 13 }}>Zatím žádné rozkazy.</div>}
       {posts && posts.map((p) => (
         <article key={p.id} style={{
-          background: DARK_PANEL2, border: `1px solid ${p.is_mission ? NEON_GREEN : NEON_GREEN + "44"}`, borderRadius: 4,
+          background: DARK_PANEL2, border: `1px solid ${p.is_mission ? GREEN : GREEN + "44"}`, borderRadius: 4,
           padding: 14, marginBottom: 12,
         }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 6 }}>
-            {p.is_mission && <span style={{ fontSize: 10, background: NEON_GREEN, color: BLACK, padding: "2px 8px", borderRadius: 3, fontWeight: 700, letterSpacing: 1 }}>MISE</span>}
-            {p.title && <strong style={{ color: NEON_GREEN, fontSize: 14 }}>{p.title}</strong>}
-            <span style={{ marginLeft: "auto", fontSize: 11, color: NEON_GREEN + "66" }}>{new Date(p.created_at).toLocaleString("cs-CZ")}</span>
+            {p.is_mission && <span style={{ fontSize: 10, background: GREEN, color: DARK_BG, padding: "2px 8px", borderRadius: 3, fontWeight: 700, letterSpacing: 1 }}>MISE</span>}
+            {p.title && <strong style={{ color: GREEN, fontSize: 14 }}>{p.title}</strong>}
+            <span style={{ marginLeft: "auto", fontSize: 11, color: GREEN + "66" }}>{new Date(p.created_at).toLocaleString("cs-CZ")}</span>
           </div>
           <div style={{ fontSize: 13, lineHeight: 1.55, whiteSpace: "pre-wrap" }}>{p.text}</div>
           <div style={{ display: "flex", marginTop: 8 }}>
-            <span style={{ fontSize: 11, color: NEON_GREEN + "66" }}>— {p.author}</span>
+            <span style={{ fontSize: 11, color: GREEN + "66" }}>— {p.author}</span>
             {me.is_admin && (
               <button onClick={() => remove(p.id)} style={{ marginLeft: "auto", background: "none", border: "none", color: "#FF6B6B", fontSize: 11, cursor: "pointer" }}>smazat</button>
             )}
@@ -458,20 +458,20 @@ function TeamChat({ me, team }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "calc(100vh - 190px)" }}>
-      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 15, color: NEON_GREEN }}>💬 KANÁL {team.flag}</h2>
+      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 15, color: GREEN }}>💬 KANÁL {team.flag}</h2>
 
-      <div style={{ flex: 1, overflowY: "auto", background: DARK_PANEL, border: `1px solid ${NEON_GREEN}44`, borderRadius: 4, padding: 12, marginBottom: 10 }}>
-        {msgs === null && <div style={{ color: NEON_GREEN + "66" }}>dešifruji zprávy...</div>}
-        {msgs && msgs.length === 0 && <div style={{ color: NEON_GREEN + "66" }}>Ticho v éteru.</div>}
+      <div style={{ flex: 1, overflowY: "auto", background: DARK_PANEL, border: `1px solid ${GREEN}44`, borderRadius: 4, padding: 12, marginBottom: 10 }}>
+        {msgs === null && <div style={{ color: GREEN + "66" }}>dešifruji zprávy...</div>}
+        {msgs && msgs.length === 0 && <div style={{ color: GREEN + "66" }}>Ticho v éteru.</div>}
         {msgs && msgs.map((m, i) => {
           const mine = m.author === me.username;
           return (
             <div key={i} style={{ display: "flex", justifyContent: mine ? "flex-end" : "flex-start", marginBottom: 8 }}>
               <div style={{
-                maxWidth: "82%", background: mine ? NEON_GREEN + "22" : DARK_PANEL2,
-                border: `1px solid ${m.is_admin ? NEON_GREEN : NEON_GREEN + "44"}`, borderRadius: 6, padding: "7px 11px",
+                maxWidth: "82%", background: mine ? GREEN + "22" : DARK_PANEL2,
+                border: `1px solid ${m.is_admin ? GREEN : GREEN + "44"}`, borderRadius: 6, padding: "7px 11px",
               }}>
-                <div style={{ fontSize: 11, color: NEON_GREEN, marginBottom: 2 }}>
+                <div style={{ fontSize: 11, color: GREEN, marginBottom: 2 }}>
                   {m.avatar} {m.author}{m.is_admin ? " DON" : ""} · {new Date(m.created_at).toLocaleTimeString("cs-CZ")}
                 </div>
                 <div style={{ fontSize: 13, lineHeight: 1.45, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{m.text}</div>
@@ -485,9 +485,9 @@ function TeamChat({ me, team }) {
       <div style={{ display: "flex", gap: 8 }}>
         <input value={text} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => e.key === "Enter" && send()}
           placeholder="Napiš zprávu..." maxLength={400}
-          style={{ flex: 1, background: DARK_PANEL2, border: `1px solid ${NEON_GREEN}44`, color: NEON_GREEN, padding: "11px 13px", borderRadius: 4, fontSize: 13, boxSizing: "border-box" }} />
+          style={{ flex: 1, background: DARK_PANEL2, border: `1px solid ${GREEN}44`, color: GREEN, padding: "11px 13px", borderRadius: 4, fontSize: 13, boxSizing: "border-box" }} />
         <button onClick={send}
-          style={{ background: NEON_GREEN, color: BLACK, border: "none", padding: "0 18px", borderRadius: 4, fontWeight: 700, cursor: "pointer" }}>
+          style={{ background: GREEN, color: DARK_BG, border: "none", padding: "0 18px", borderRadius: 4, fontWeight: 700, cursor: "pointer" }}>
           ▶
         </button>
       </div>
@@ -549,7 +549,7 @@ function HackGame({ me, setMe }) {
 
   return (
     <div>
-      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 20, color: NEON_GREEN }}>💻 PROLOMENÍ FIREWALLU</h2>
+      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 20, color: GREEN }}>💻 PROLOMENÍ FIREWALLU</h2>
 
       <div style={{ display: "flex", gap: 10, marginBottom: 14 }}>
         <Stat label="SKÓRE" value={score} />
@@ -558,42 +558,42 @@ function HackGame({ me, setMe }) {
       </div>
 
       <div style={{
-        background: "#0A0F0A", border: `1px solid ${phase === "over" ? "#FF6B6B" : NEON_GREEN + "44"}`,
+        background: "#0f1f12", border: `1px solid ${phase === "over" ? "#FF6B6B" : GREEN + "44"}`,
         borderRadius: 4, padding: "26px 16px", textAlign: "center", minHeight: 130, marginBottom: 14,
-        color: NEON_GREEN, position: "relative", overflow: "hidden",
+        color: GREEN, position: "relative", overflow: "hidden",
       }}>
         {phase === "idle" && (
           <>
-            <div style={{ fontSize: 12, marginBottom: 14, color: NEON_GREEN + "66" }}>
+            <div style={{ fontSize: 12, marginBottom: 14, color: GREEN + "66" }}>
               &gt; cíl: server nepřátelské rodiny<br />&gt; zobrazí se kód – zapamatuj si ho<br />&gt; každá úroveň = delší kód a víc bodů
             </div>
-            <button onClick={start} style={{ background: NEON_GREEN, color: BLACK, border: "none", padding: "12px 26px", borderRadius: 4, fontWeight: 700, fontSize: 14, cursor: "pointer", letterSpacing: 2 }}>
+            <button onClick={start} style={{ background: GREEN, color: DARK_BG, border: "none", padding: "12px 26px", borderRadius: 4, fontWeight: 700, fontSize: 14, cursor: "pointer", letterSpacing: 2 }}>
               SPUSTIT HACK ▶
             </button>
           </>
         )}
         {phase === "show" && (
           <>
-            <div style={{ fontSize: 11, color: NEON_GREEN + "66", marginBottom: 10 }}>&gt; zachycen přístupový kód:</div>
+            <div style={{ fontSize: 11, color: GREEN + "66", marginBottom: 10 }}>&gt; zachycen přístupový kód:</div>
             <div style={{ fontSize: 32, letterSpacing: 8, fontWeight: 700 }}>{code}</div>
-            <div style={{ fontSize: 11, color: NEON_GREEN + "66", marginTop: 10 }}>zapamatuj si ho...</div>
+            <div style={{ fontSize: 11, color: GREEN + "66", marginTop: 10 }}>zapamatuj si ho...</div>
           </>
         )}
         {phase === "input" && (
           <>
-            <div style={{ fontSize: 11, color: NEON_GREEN + "66", marginBottom: 10 }}>&gt; zadej kód zpaměti:</div>
+            <div style={{ fontSize: 11, color: GREEN + "66", marginBottom: 10 }}>&gt; zadej kód zpaměti:</div>
             <div style={{ fontSize: 28, letterSpacing: 6, fontWeight: 700, minHeight: 40 }}>
               {entered}<span style={{ animation: "blink 0.8s infinite" }}>▌</span>
             </div>
-            <div style={{ fontSize: 11, color: NEON_GREEN + "66", marginTop: 8 }}>{code.length - entered.length} znaků zbývá</div>
+            <div style={{ fontSize: 11, color: GREEN + "66", marginTop: 8 }}>{code.length - entered.length} znaků zbývá</div>
           </>
         )}
         {phase === "over" && (
           <>
             <div style={{ color: "#FF6B6B", fontSize: 17, fontWeight: 700, marginBottom: 6 }}>⛔ SPOJENÍ PŘERUŠENO</div>
-            <div style={{ fontSize: 13, marginBottom: 4 }}>Skóre: <b style={{ color: NEON_GREEN }}>{score}</b></div>
-            {score >= best && score > 0 && <div style={{ color: NEON_GREEN, fontSize: 12, marginBottom: 8 }}>★ NOVÝ REKORD!</div>}
-            <button onClick={start} style={{ background: NEON_GREEN, color: BLACK, border: "none", padding: "10px 22px", borderRadius: 4, fontWeight: 700, cursor: "pointer" }}>
+            <div style={{ fontSize: 13, marginBottom: 4 }}>Skóre: <b style={{ color: GREEN }}>{score}</b></div>
+            {score >= best && score > 0 && <div style={{ color: GREEN, fontSize: 12, marginBottom: 8 }}>★ NOVÝ REKORD!</div>}
+            <button onClick={start} style={{ background: GREEN, color: DARK_BG, border: "none", padding: "10px 22px", borderRadius: 4, fontWeight: 700, cursor: "pointer" }}>
               ZKUSIT ZNOVU
             </button>
           </>
@@ -606,8 +606,8 @@ function HackGame({ me, setMe }) {
             disabled={phase !== "input"}
             style={{
               padding: "16px 0", fontSize: 18, fontWeight: 700, borderRadius: 4, cursor: "pointer",
-              background: phase === "input" ? DARK_PANEL2 : DARK_PANEL, color: phase === "input" ? NEON_GREEN : NEON_GREEN + "66",
-              border: `1px solid ${NEON_GREEN}44`,
+              background: phase === "input" ? DARK_PANEL2 : DARK_PANEL, color: phase === "input" ? GREEN : GREEN + "66",
+              border: `1px solid ${GREEN}44`,
             }}>{d}</button>
         ))}
       </div>
@@ -638,30 +638,30 @@ function Leaderboard({ me }) {
 
   useEffect(() => { load(); }, [load]);
 
-  if (!scores) return <div style={{ color: NEON_GREEN + "66" }}>počítám body...</div>;
+  if (!scores) return <div style={{ color: GREEN + "66" }}>počítám body...</div>;
 
   const max = Math.max(1, scores[0]?.total || 1);
 
   return (
     <div>
-      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 20, color: NEON_GREEN }}>🏆 VÁLKA RODIN</h2>
+      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 20, color: GREEN }}>🏆 VÁLKA RODIN</h2>
 
       {scores.map((t, i) => (
         <div key={t.id} style={{
           background: DARK_PANEL2,
-          border: `1px solid ${NEON_GREEN}44`,
+          border: `1px solid ${GREEN}44`,
           borderRadius: 4, padding: "12px 14px", marginBottom: 10,
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
             <span style={{ fontSize: 18 }}>{i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "•"}</span>
             <span style={{ fontSize: 14 }}>{t.flag}</span>
             <span style={{ fontSize: 13, fontWeight: 700, color: t.color }}>{t.name}</span>
-            <span style={{ marginLeft: "auto", fontWeight: 700, color: NEON_GREEN, fontSize: 15 }}>{t.total}</span>
+            <span style={{ marginLeft: "auto", fontWeight: 700, color: GREEN, fontSize: 15 }}>{t.total}</span>
           </div>
           <div style={{ height: 5, background: DARK_PANEL, borderRadius: 3, overflow: "hidden", marginBottom: 6 }}>
             <div style={{ width: `${(t.total / max) * 100}%`, height: "100%", background: t.color, boxShadow: `0 0 8px ${t.color}` }} />
           </div>
-          <div style={{ fontSize: 10, color: NEON_GREEN + "66" }}>
+          <div style={{ fontSize: 10, color: GREEN + "66" }}>
             {t.count} agentů • her: <b>{t.gamePoints}</b> • bonus: <b>{t.bonusPoints}</b>
           </div>
         </div>
@@ -689,16 +689,16 @@ function AdminPanel() {
 
   return (
     <div>
-      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 20, color: NEON_GREEN }}>🗂️ ŠTÁB VEDENÍ</h2>
+      <h2 style={{ fontSize: 16, letterSpacing: 2, marginBottom: 20, color: GREEN }}>🗂️ ŠTÁB VEDENÍ</h2>
 
-      <div style={{ background: DARK_PANEL, border: `1px solid ${NEON_GREEN}44`, borderRadius: 4, padding: 14 }}>
-        <h3 style={{ color: NEON_GREEN, marginTop: 0 }}>👥 Uživatelé ({users.filter(u => !u.is_admin).length})</h3>
+      <div style={{ background: DARK_PANEL, border: `1px solid ${GREEN}44`, borderRadius: 4, padding: 14 }}>
+        <h3 style={{ color: GREEN, marginTop: 0 }}>👥 Uživatelé ({users.filter(u => !u.is_admin).length})</h3>
         {users.filter(u => !u.is_admin).map((u) => (
-          <div key={u.username} style={{ display: "flex", gap: 8, fontSize: 11, padding: "6px 0", borderBottom: `1px solid ${NEON_GREEN}44`, alignItems: "center" }}>
+          <div key={u.username} style={{ display: "flex", gap: 8, fontSize: 11, padding: "6px 0", borderBottom: `1px solid ${GREEN}44`, alignItems: "center" }}>
             <span>{u.avatar}</span>
             <span style={{ flex: 1 }}>{u.username}</span>
-            <span style={{ color: TEAMS[u.team]?.color || NEON_GREEN + "66" }}>{TEAMS[u.team]?.flag}</span>
-            {u.best_score > 0 && <span style={{ color: NEON_GREEN }}>{u.best_score}</span>}
+            <span style={{ color: TEAMS[u.team]?.color || GREEN + "66" }}>{TEAMS[u.team]?.flag}</span>
+            {u.best_score > 0 && <span style={{ color: GREEN }}>{u.best_score}</span>}
             <button onClick={() => deleteUser(u.username)} style={{ background: "none", border: "none", color: "#FF6B6B", fontSize: 10, cursor: "pointer" }}>
               smazat
             </button>
@@ -714,15 +714,15 @@ function Profile({ me, team, onLogout }) {
   return (
     <div style={{ textAlign: "center" }}>
       <div style={{ fontSize: 48, marginTop: 30, marginBottom: 15 }}>{me.avatar}</div>
-      <h2 style={{ color: NEON_GREEN, margin: "10px 0 2px", letterSpacing: 1, fontSize: 20 }}>{me.username}</h2>
+      <h2 style={{ color: GREEN, margin: "10px 0 2px", letterSpacing: 1, fontSize: 20 }}>{me.username}</h2>
       <div style={{ color: team.color, fontSize: 12, marginBottom: 30 }}>{team.flag} {team.name}{me.is_admin ? " · HLAVNÍ VEDOUCÍ" : ""}</div>
 
       <div style={{ display: "flex", gap: 10, justifyContent: "center", marginBottom: 30 }}>
         <Stat label="REKORD" value={me.best_score || 0} />
       </div>
 
-      <div style={{ background: DARK_PANEL, border: `1px solid ${NEON_GREEN}44`, borderRadius: 4, padding: 16, fontSize: 11, color: NEON_GREEN + "99", textAlign: "left", lineHeight: 1.6, maxWidth: 360, margin: "0 auto 24px" }}>
-        <b style={{ color: NEON_GREEN }}>KODEX OMERTÀ:</b><br />
+      <div style={{ background: DARK_PANEL, border: `1px solid ${GREEN}44`, borderRadius: 4, padding: 16, fontSize: 11, color: GREEN + "99", textAlign: "left", lineHeight: 1.6, maxWidth: 360, margin: "0 auto 24px" }}>
+        <b style={{ color: GREEN }}>KODEX OMERTÀ:</b><br />
         1. Chraň svou rodinu a hraj fér.<br />
         2. Co se řekne v kanálu, zůstává v kanálu.<br />
         3. Body získáváš pro rodinu, ne pro sebe.<br />
@@ -740,9 +740,9 @@ function Profile({ me, team, onLogout }) {
 // ===== KOMPONENTY =====
 function Stat({ label, value }) {
   return (
-    <div style={{ flex: 1, background: DARK_PANEL2, border: `1px solid ${NEON_GREEN}44`, borderRadius: 4, padding: "10px 6px", textAlign: "center", minWidth: 80 }}>
-      <div style={{ fontSize: 18, fontWeight: 700, color: NEON_GREEN }}>{value}</div>
-      <div style={{ fontSize: 10, color: NEON_GREEN + "66", letterSpacing: 1, marginTop: 2 }}>{label}</div>
+    <div style={{ flex: 1, background: DARK_PANEL2, border: `1px solid ${GREEN}44`, borderRadius: 4, padding: "10px 6px", textAlign: "center", minWidth: 80 }}>
+      <div style={{ fontSize: 18, fontWeight: 700, color: GREEN }}>{value}</div>
+      <div style={{ fontSize: 10, color: GREEN + "66", letterSpacing: 1, marginTop: 2 }}>{label}</div>
     </div>
   );
 }
